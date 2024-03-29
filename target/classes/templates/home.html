@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang chủ</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgb(255, 0, 0);">
+	    <a class="navbar-brand" href="#" style="color: white;">Home</a>
+	    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="navbar-toggler-icon"></span>
+	    </button>
+	    <div class="collapse navbar-collapse" id="navbarNav">
+	        <ul class="navbar-nav ml-auto">
+	            <li class="nav-item active">
+	                <a class="nav-link" href="#" style="color: white;">Trang chủ</a>
+	            </li>
+	            <li class="nav-item">
+	                <a class="nav-link" th:href="@{/login}" style="color: white;">Đăng xuất</a>
+	            </li>
+	        </ul>
+	    </div>
+	</nav>
+
+	<div class="container mt-5">
+		        <h2>Các bài kiểm tra</h2>
+				<div class="row mt-3">
+				        <div th:each="exam, iterStat : ${exams}" class="col-lg-4 mb-3">
+				            <div class="card">
+				                <div class="card-body">
+				                    <a th:href="@{/index}" class="btn btn-light btn-light-custom  text-left d-block"> 
+				                        <h5 class="card-title" th:text="${exam.examName}"></h5>
+				                        <p class="card-text" th:text="${exam.totalQuestion + ' questions'}"></p>
+				                    </a>
+				                    <br>
+				                    <p class="card-text text-right" th:text="${exam.sessionName}"></p>
+				                </div>
+				            </div>
+				        </div>
+				    </div>
+		    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

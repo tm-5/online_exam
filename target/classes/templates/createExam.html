@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Exam</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Create Exam</h2>
+        <form th:action="@{/saveExam}" method="post" th:object="${exam}">
+            <div class="form-group">
+                <label for="examName">Exam Name:</label>
+                <input type="text" class="form-control" id="examName" name="examName"  placeholder="Enter exam name" required>
+            </div>
+            <div class="form-group">
+                <label for="totalQuestion">Total Questions:</label>
+                <input type="number" class="form-control" id="totalQuestion" name="totalQuestion" placeholder="Enter total questions" required>
+            </div>
+            <div class="form-group">
+                <label for="sessionName">Session Name:</label>
+                <input type="text" class="form-control" id="sessionName" name="sessionName" placeholder="Enter session name" required>
+            </div>
+            <button type="submit" class="btn btn-primary">OK</button>
+            <a th:href="@{/admin_home}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+	<div class="container mt-5">
+	        <h2>Create New Exam</h2>
+	        <form th:action="@{/createExam}" method="post" th:object="${exam}">
+	            <div class="form-group">
+	                <label for="examName">Exam Name:</label>
+	                <input type="text" class="form-control" id="examName" th:field="*{examName}" name="examName" placeholder="Enter exam name" required>
+	            </div>
+	            <div class="form-group">
+	                <label for="totalQuestion">Total Questions:</label>
+	                <input type="number" class="form-control" id="totalQuestion" th:field="*{totalQuestion}" name="totalQuestion" placeholder="Enter total questions" required>
+	            </div>
+	            <div class="form-group">
+	                <label for="sessionName">Session Name:</label>
+	                <input type="text" class="form-control" id="sessionName" th:field="*{sessionName}" name="sessionName" placeholder="Enter session name" required>
+	            </div>
+	            
+	            <div id="questionFields">
+	                <!-- Dynamic question fields will be added here -->
+	            </div>
+	            
+	            <button type="button" class="btn btn-primary" onclick="addQuestionField()">Add Question</button>
+	            <button type="submit" class="btn btn-primary">Create</button>
+	            <a href="/" class="btn btn-secondary">Cancel</a>
+	        </form>
+	    </div>
+	
+	    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+	    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+		<script>
+		    function addQuestionField() {
+		        var totalQuestion = document.getElementById("totalQuestion").value;
+		        var questionFields = document.getElementById("questionFields");
+		
+		        // Clear existing question fields to avoid duplication
+		        questionFields.innerHTML = "";
+		
+		        // Loop to create input fields for each question
+		        for (var i = 0; i < totalQuestion; i++) {
+		            var questionField = document.createElement("div");
+		            questionField.className = "form-group";
+		            questionField.innerHTML = `
+					
+		                <label>Question Text:</label>
+		                <input type="text" class="form-control" th:field="*{questions[__${i}__].questionText}" required>
+		                <label>Answer:</label>
+		                <input type="text" class="form-control" th:field="*{questions[__${i}__].answer}" required>
+		                <label>Option A:</label>
+		                <input type="text" class="form-control" th:field="*{questions[__${i}__].optionA}">
+		                <label>Option B:</label>
+		                <input type="text" class="form-control" th:field="*{questions[__${i}__].optionB}">
+		                <label>Option C:</label>
+		                <input type="text" class="form-control" th:field="*{questions[__${i}__].optionC}">
+		                <label>Option D:</label>
+		                <input type="text" class="form-control" th:field="*{questions[__${i}__].optionD}">
+		            `;
+		            questionFields.appendChild(questionField);
+		        }
+		    }
+		</script>
+
+</body>
+</html>

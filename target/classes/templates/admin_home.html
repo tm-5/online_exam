@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Home</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Admin Dashboard</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						<a class="nav-link" th:href="@{/manage_exam}">Quản lý Exam</a>
+					</li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/manage_user}">Quản lý User</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/manage_result}">Quản lý Kết quả</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/login}">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+		<div class="container mt-5">
+			        <h2>Welcome, Admin!</h2>
+					<!--
+			        <a th:href="@{/createExam}" class="btn btn-primary mt-3">Tạo bài thi mới</a> 
+			
+			        <h3 class="mt-4">Danh sách Exam</h3>
+			        <div class="table-responsive">
+			            <table class="table table-bordered table-striped">
+			                <thead class="thead-dark">
+			                    <tr>
+			                        <th scope="col">ID</th>
+			                        <th scope="col">Tên</th>
+			                        <th scope="col">Số câu</th>
+			                        <th scope="col">Kỳ thi</th>
+									<th scope="col">Trạng thái</th>
+			                    </tr>
+			                </thead>
+			                <tbody>
+			                    <tr th:each="exam : ${exams}">
+			                        <td th:text="${exam.id}"></td>
+			                        <td th:text="${exam.examName}"></td>
+			                        <td th:text="${exam.totalQuestion}"></td>
+									<td th:text="${exam.sessionName}"></td>
+			                        <td th:text="${exam.enabled}"></td>
+			                    </tr>
+			                </tbody>
+			            </table>
+			        </div>
+			    </div>
+				-->
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
